@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+  <!-- Optional Swiper or gallery CSS could be added here -->
+{% endblock %}
+
+{% block title %}ASIATEKS - {{ product.title }}{% endblock %}
+
+{% block body %}
+<section class="product-detail">
+  <div class="product-detail-container">
+    <a href="{{ url_for('products') }}" class="back-button">&larr; Назад к каталогу</a>
+
+    <div class="product-detail-content">
+      <!-- Image Column -->
+      <div class="product-image-column">
+        <!-- Main Image Display -->
+        <img id="main-image" src="{{ url_for('static', filename=product.images[0]) }}"
+             alt="{{ product.title }}" class="main-product-image">
+
+        <!-- Thumbnails -->
+        <div class="product-thumbnails">
+          {% for image in product.images %}
+            <img src="{{ url_for('static', filename=image) }}"
+                 alt="Превью {{ loop.index }}" class="thumbnail"
+                 onclick="document.getElementById('main-image').src=this.src">
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div class="product-info-column">
+        <h1 class="product-title">
+          {{ product.title }}
+          <span class="product-price">
+            {% if product.price %}
+              {{ product.price[1] }} сум
+            {% endif %}
+          </span>
+        </h1>
+
+        <div class="product-description">
+          <strong>Состав:</strong> {{ product.detailed_description[0] }}% хлопок, {{ product.detailed_description[1] }}% лён
+        </div>
+
+        <div class="product-specs">
+          <p><strong>Ширина:</strong> {{ product.specifications[0] }} см</p>
+          <p><strong>Плотность:</strong> {{ product.specifications[1] }} г/м²</p>
+          <p><strong>Описание:</strong> {{ product.product_description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Similar Products -->
+    {% if products %}
+      {% set similar = [] %}
+      {% for p in products if p.id != product.id and (product.tags | intersect(p.tags) or product.title.split()[0] in p.title) %}
+        {% if similar|length < 4 %}{% set _ = similar.append(p) %}{% endif %}
+      {% endfor %}
+      {% if similar %}
+        <div class="related-products">
+          <h2>Похожие товары</h2>
+          <div class="product-grid">
+            {% for item in similar %}
+              <div class="catalog-card">
+                <img src="{{ url_for('static', filename=item.images[0]) }}" 
+                     alt="{{ item.title }}" class="catalog-image">
+                <h3 class="catalog-title">{{ item.title }}</h3>
+                <a href="{{ url_for('product_detail', product_id=item.id) }}" 
+                   class="catalog-link">Подробнее</a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Optional: Add hover or selection effect here later
+</script>
+{% endblock %}

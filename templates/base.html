@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}ASIATEKS{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('serve_static', filename='assets/favicon.jpg') }}" />
+
+    <!-- Load Google Font (Geologica) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+    <!-- Mobile CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}" media="only screen and (max-width: 768px)" />
+
+    <!-- Swiper CSS (only once) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    
+    <!-- If you need Splide on other pages, include it once; otherwise, remove it -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/css/splide.min.css"> -->
+  </head>
+  <body>
+ <nav class="navbar">
+  <div class="navbar-container">
+    <!-- Left side: Logo + Links -->
+    <div class="navbar-left">
+      <a href="/" class="navbar-logo">
+        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="ASIATEKS Logo" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/products">Каталог</a></li>
+      </ul>
+    </div>
+
+    <!-- Right side: Phone numbers -->
+    <div class="navbar-right">
+      <a href="tel:+74932373393" class="navbar-phone">+7 (4932) 37-33-93</a>
+      <a href="tel:+79203564269" class="navbar-phone">+7 (920) 356-42-69</a>
+    </div>
+  </div>
+</nav>
+
+
+    {% block body %}{% endblock %}
+
+    <!-- Footer (common to all pages) -->
+    <footer class="site-footer">
+      <div class="footer-left">
+        <img src="{{ url_for('static', filename='assets/logo2.png') }}" alt="ASIATEKS" class="footer-logo" />
+      </div>
+      <div class="footer-contacts">
+        <p>
+          <img src="{{ url_for('static', filename='assets/phone_mini.png') }}" alt="Phone" />
+          <a href="tel:+74932373393">+7 (4932) 37-33-93</a>
+          <span class="footer-separator">|</span>
+          <a href="tel:+79203564269">+7 (920) 356-42-69</a>
+        </p>
+        <p>
+          <img src="{{ url_for('static', filename='assets/telegram_mini.png') }}" alt="Telegram" />
+          <a href="https://t.me/asia_teks">@asia_teks</a>
+        </p>
+        <p>
+          <img src="{{ url_for('static', filename='assets/whatsup_min.png') }}" alt="WhatsApp" />
+          <a href="https://wa.me/79203564269">+7 (920) 356-42-69</a>
+        </p>
+        <p>
+          <img src="{{ url_for('static', filename='assets/email_mini.png') }}" alt="Email" />
+          <a href="mailto:ASIATEKS@yandex.ru">ASIATEKS@yandex.ru</a>
+        </p>
+      </div>
+      <p class="footer-big-text">2025 ASIATEKS. Все права защищены</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="#about">О компании ASIATEKS</a></li>
+          <li><a href="#products">Наша продукция</a></li>
+          <li><a href="#examples">Варианты изделий</a></li>
+          <li><a href="#map">ASIATEKS на карте</a></li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!-- JS Libraries: Include Swiper JS once -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <!-- If needed, include Splide JS once (only if using Splide on some pages) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/js/splide.min.js"></script> -->
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}ASIATEKS - Каталог{% endblock %}
+
+{% block body %}
+<section class="product-catalog">
+  <div class="product-catalog-container">
+    <br><br><br>
+    <h1 class="catalog-heading">Наша продукция</h1>
+
+    <!-- Filter Form -->
+    <form method="get" action="{{ url_for('products') }}" class="catalog-filter">
+      <input type="text" name="search" placeholder="Поиск..." value="{{ query }}">
+      <select name="tag">
+        <option value="">Все теги</option>
+        <option value="современный" {% if tag_filter == "современный" %}selected{% endif %}>Современный</option>
+        <option value="хлопок" {% if tag_filter == "хлопок" %}selected{% endif %}>Хлопок</option>
+        <option value="лен" {% if tag_filter == "лен" %}selected{% endif %}>Лен</option>
+      </select>
+      <button type="submit">
+        <img src="{{ url_for('static', filename='assets/search.png') }}" alt="Поиск" />
+      </button>
+    </form>
+
+    <!-- Product Grid -->
+    <div class="catalog-grid">
+      {% for product in products %}
+      <div class="catalog-card">
+        <img src="{{ url_for('static', filename=product.images[0]) }}" alt="{{ product.title }}" class="catalog-image" />
+        <h2 class="catalog-title">{{ product.title }}</h2>
+        <p class="catalog-description">{{ product.description }}</p>
+        <p class="catalog-price">
+          {% if product.price %}
+            {{ product.price[1] }} сум / {{ product.specifications[0] }}x{{ product.specifications[1] }}
+          {% else %}
+            Цена по запросу
+          {% endif %}
+        </p>
+        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="catalog-link">Подробнее</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

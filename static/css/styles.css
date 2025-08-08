@@ -1,0 +1,998 @@
+/* ==================================================
+   Balanced Desktop-Oriented Styles
+   ================================================== */
+
+/* ------------------------------
+   1. RESET & GLOBAL SETTINGS
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size for desktop */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Geologica', sans-serif;
+  background-color: #FFF8EE;
+  color: #6E826F;
+}
+
+/* Hide mobile-specific header */
+.hero-mobile {
+  display: none;
+}
+
+/* Mobile Navbar Styles */
+.navbar {
+  width: 100%;
+  background-color: #FFF8EE;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  padding: 0.5vw 1vw;
+  transition: top 0.7s ease-in-out;
+}
+
+/* Navbar container with left/right alignment */
+.navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align left/right sides */
+}
+
+/* Left side: Logo + Links */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+/* Logo styling */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  max-width: 6vw;
+  height: auto;
+  filter: invert(47%) sepia(14%) saturate(640%) hue-rotate(72deg) brightness(89%) contrast(88%);
+}
+
+/* Navigation links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1vw;
+  margin-left: 1vw;
+  padding: 0;
+}
+
+.navbar-links li,
+.navbar-links li a {
+  font-size: 1.2vw;
+  color: #6E826F;
+  font-weight: 400;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links li a:hover {
+  text-decoration: underline;
+}
+
+/* Right side: Phone numbers */
+.navbar-right {
+  display: flex;
+  gap: 2.2vw;
+  align-items: center;
+}
+
+.navbar-phone {
+  font-size: 1.02vw; /* 15% smaller than links */
+  color: #6E826F;
+  font-weight: 400;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+/* ------------------------------
+   2. HERO SECTION (Desktop)
+------------------------------ */
+.hero {
+  position: relative;
+  background-color: #6E826F;
+  color: #FFF8EE;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 360px;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: url('/static/assets/linen.png') center/cover no-repeat;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 4.5rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #FFF8EE;
+}
+
+.subtitle {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  color: #FFF8EE;
+}
+
+.hero-cta {
+  display: inline-block;
+  background-color: #FFF8EE;
+  color: #6E826F;
+  padding: 1.2rem 2.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.6rem;
+  border-radius: 28px;
+  box-shadow: 3px 3px 14px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+/* ------------------------------
+   3. SECTION HEADERS
+------------------------------ */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.section-icon {
+  width: 50px; /* Moderately sized icon */
+  height: auto;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #6E826F;
+  margin: 0;
+  text-align: center;
+}
+
+/* ------------------------------
+   4. ABOUT SECTION
+------------------------------ */
+.about-section {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 30px;
+  text-align: center;
+}
+
+.about-section p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #8E7D64;
+}
+
+/* ------------------------------
+   5. FEATURES SECTION
+------------------------------ */
+.features {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 40px;
+}
+
+.features-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.feature-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.75rem;
+}
+
+.feature-item p {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* ------------------------------
+   6. PRODUCTS SECTION
+------------------------------ */
+.products {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 40px;
+  text-align: center;
+  position: relative;
+}
+
+.price-list-link {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.price-list-link a {
+  display: inline-block;
+  background-color: #FFF8EE;
+  color: #6E826F;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Geologica', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.product-note {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #8E7D64;
+  font-weight: 500;
+  text-align: justify;
+  margin-top: 20px;
+}
+
+/* ------------------------------
+   7. SWIPER (PRODUCTS SLIDER)
+------------------------------ */
+.mobile-swiper-container {
+  width: 100%;
+  margin: 20px auto;
+  padding: 0;
+  max-width: 1400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-swiper-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px; /* replaces margin */
+}
+
+.mobile-swiper-slide {
+  flex: 0 0 auto;
+  width: 280px; /* 280px * 4 + 3 * 20px gap = 1200px exactly */
+  text-align: center;
+  position: relative;
+}
+
+.mobile-swiper-slide img {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.mobile-swiper-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: rgba(110, 130, 111, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFF8EE;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+.mobile-swiper-slide:hover::before {
+  opacity: 1;
+}
+
+.mobile-swiper-slide:hover .slide-text {
+  opacity: 1;
+}
+
+/* Navigation buttons */
+.mobile-swiper-button-prev,
+.mobile-swiper-button-next {
+  position: absolute;
+  top: 65%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #6E826F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-swiper-button-prev {
+  left: -30px;
+}
+
+.mobile-swiper-button-next {
+  right: -30px;
+}
+
+.mobile-swiper-button-prev img,
+.mobile-swiper-button-next img {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-swiper-button-prev::after,
+.mobile-swiper-button-next::after {
+  display: none;
+}
+
+
+/* ------------------------------
+   8. EXAMPLES SECTION (SECOND SLIDER)
+------------------------------ */
+.mobile-products {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 40px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+}
+
+.advantages-row3 {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 40px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.advantage-item2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.advantage-item2 img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.advantage-item2 p {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Second slider container */
+.mobile-swiper-container2 {
+  width: 100%;
+  margin: 40px auto;
+  padding: 0;
+  max-width: 1400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-swiper-wrapper2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-swiper-slide2 {
+  flex: 0 0 auto;
+  width: 200px; /* each slide ~280px wide on desktop */
+  margin: 0 0px;
+  text-align: center;
+  position: relative;
+}
+
+.mobile-swiper-slide2 img {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+/* Navigation buttons for Examples Slider */
+.mobile-swiper-button-prev2,
+.mobile-swiper-button-next2 {
+  position: absolute;
+  top: 75%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #6E826F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-swiper-button-prev2 {
+  left: -30px;
+}
+
+.mobile-swiper-button-next2 {
+  right: -30px;
+}
+
+.mobile-swiper-button-prev2 img,
+.mobile-swiper-button-next2 img {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-swiper-button-prev2::after,
+.mobile-swiper-button-next2::after {
+  display: none;
+}
+
+/* ------------------------------
+   9. LINEN ADVANTAGES
+------------------------------ */
+.linen-advantages {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.linen-advantages .advantages-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.advantages-row2 {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 40px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.advantage-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.advantage-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.advantage-item p {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Dropdown text for advantages */
+.advantages-text-mobile {
+  display: block !important;
+}
+
+.advantages-text-desktop {
+  display: none !important;
+}
+
+.advantages-text-mobile details {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #8E7D64;
+}
+
+.advantages-text-mobile details summary::-webkit-details-marker {
+  color: #6E826F;
+}
+
+/* ------------------------------
+   10. MAP SECTION
+------------------------------ */
+.map-container iframe {
+  width: 100% !important;
+  max-width: 700px;
+  height: 350px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.map-section .address p.address {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify;
+  color: #8E7D64;
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+/* ------------------------------
+   11. FOOTER (Updated Layout)
+------------------------------ */
+.site-footer {
+  background-color: #8E7D64;
+  color: #D6C0A1;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  padding: 30px 50px;
+}
+
+.footer-left {
+  order: 1;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-left .footer-logo {
+  width: 120px;
+  height: auto;
+}
+
+.footer-contacts {
+  order: 2;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-contacts p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.footer-contacts p img {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-nav {
+  order: 3;
+  flex: 0 0 auto;
+}
+
+.footer-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-nav ul li a {
+  font-size: 1rem;
+  color: #D6C0A1;
+  text-decoration: none;
+}
+
+.footer-big-text {
+  order: 4;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* Link colors */
+a {
+  color: #D6C0A1;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hero a {
+  color: #FFF8EE;
+}
+
+.site-footer a {
+  color: #D6C0A1;
+}
+
+.hero-content a {
+  color: #6E826F;
+}
+
+/* ------------------------------
+   12. CATALOG SECTION (Zara-style)
+------------------------------ */
+.product-catalog {
+  padding: 60px 0;
+  background-color: #FFF8EE;
+}
+
+.product-catalog-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.catalog-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #6E826F;
+  margin-bottom: 40px;
+}
+
+/* Filter Form */
+.catalog-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.catalog-filter input,
+.catalog-filter select,
+.catalog-filter button {
+  padding: 0.65rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'Geologica', sans-serif;
+  border: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  background-color: #f4f1ec;
+  color: #6E826F;
+}
+
+.catalog-filter input {
+  width: 200px;
+}
+
+.catalog-filter select {
+  width: 180px;
+  appearance: none;
+}
+
+.catalog-filter button {
+  background-color: #6E826F;
+  color: #FFF8EE;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+}
+
+.catalog-filter button:hover {
+  background-color: #597059;
+  transform: translateY(-2px);
+}
+
+.catalog-filter button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Product Grid */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  text-align: left;
+}
+
+/* Product Card */
+.catalog-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.catalog-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6E826F;
+  margin-bottom: 6px;
+}
+
+.catalog-description {
+  font-size: 0.95rem;
+  color: #8E7D64;
+  margin-bottom: 8px;
+}
+
+.catalog-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6E826F;
+  text-decoration: underline;
+}
+
+.catalog-link:hover {
+  text-decoration: none;
+}
+
+/* ==================================================
+   product_detail.css
+   Product Details Page Styles (Professional & Minimal)
+   ================================================== */
+
+/* Container and Layout */
+.product-detail {
+  padding: 2rem 0;
+  background-color: transparent;
+  color: #222222;
+  font-family: 'Geologica', sans-serif;
+}
+.product-detail-container {
+  max-width: 1100px;
+  margin: 5% 0 0 5%; /* push down and to the left */
+  padding: 0 1rem;
+}
+
+/* Back Button */
+.btn-back {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #6E826F;
+  color: #FFF;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  margin-bottom: 2rem;
+}
+.btn-back:hover {
+  background: #597059;
+}
+
+/* Main Layout */
+.product-detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+@media (min-width: 992px) {
+  .product-detail-content {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+/* Image Column */
+.product-image-column {
+  flex: 1;
+}
+.main-product-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Info Column */
+.product-info-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #345E40;
+  margin: 0;
+}
+.product-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #E53935;
+}
+.product-description {
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1.6;
+  background: #FFF8EE;
+  border-left: 4px solid #6E826F;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+/* Specifications */
+.product-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-specs p {
+  font-size: 1rem;
+  color: #333333;
+  background: #FFF8EE;
+  border-left: 4px solid #6E826F;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin: 0;
+}
+.product-specs p strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Similar Products */
+.related-products {
+  margin-top: 6rem;
+}
+.related-products h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #345E40;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+.product-grid.four-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.catalog-card {
+  background: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: center;
+  padding: 0.5rem;
+  transition: box-shadow 0.2s;
+}
+.catalog-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.catalog-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.catalog-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #222222;
+  margin: 0.75rem 0;
+}
+.catalog-link {
+  display: inline-block;
+  margin: 0.5rem 0 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #6E826F;
+  color: #FFF;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.catalog-link:hover {
+  background: #597059;
+}
+
+
+
+
+

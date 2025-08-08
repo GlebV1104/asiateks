@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+{% block title %}ASIATEKS - Home{% endblock %}
+
+{% block body %}
+<!-- Mobile Header (only in home.html) -->
+<header class="hero-mobile">
+  <div class="hero-mobile-background"></div>
+  
+  <!-- Removed the hero-mobile-logo block with the logo -->
+
+  <div class="hero-mobile-top">
+    <!-- Removed the .hero-logo block that had the logo link -->
+
+    <div class="hero-mobile-content">
+      <div class="hero-mobile-text-wrapper">
+        <div class="hero-mobile-text">
+          <h1>
+            Добро пожаловать<br />
+            на сайт<br />
+            компании ASIATEKS!
+          </h1>
+          <p class="subtitle">
+            Производитель и поставщик текстильной продукции
+          </p>
+        </div>
+        <div class="hero-mobile-contacts">
+          <a href="tel:+74932373393">
+            <img src="{{ url_for('static', filename='assets/phone_icon.png') }}" alt="Phone" />
+          </a>
+          <a href="mailto:ASIATEKS@yandex.ru">
+            <img src="{{ url_for('static', filename='assets/email_icon.png') }}" alt="Email" />
+          </a>
+          <a href="https://t.me/asia_teks">
+            <img src="{{ url_for('static', filename='assets/telegram_icon.png') }}" alt="Telegram" />
+          </a>
+          <a href="https://wa.me/79203564269">
+            <img src="{{ url_for('static', filename='assets/whatsup_icon.png') }}" alt="WhatsApp" />
+          </a>
+        </div>
+      </div>
+      <a href="{{ url_for('static', filename='files/price_list.xls') }}" class="hero-cta" download>
+        <img 
+          src="{{ url_for('static', filename='assets/icon_sale.png') }}" 
+          alt="Sale Icon" 
+          class="hero-cta-icon"
+        />
+        СКАЧАТЬ ПРАЙС ЛИСТ
+      </a>
+    </div>
+  </div>
+</header>
+<!-- Desktop Header (only in home.html) -->
+<header class="hero">
+  <div class="hero-background"></div>
+
+  <div class="hero-content">
+    <h1>Добро пожаловать на сайт<br />компании ASIATEKS!</h1>
+    <p class="subtitle">Производитель и поставщик текстильной продукции</p>
+    <a href="{{ url_for('static', filename='files/price_list.xls') }}" class="hero-cta" download>
+      СКАЧАТЬ ПРАЙС
+    </a>
+  </div>
+</header>
+
+
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <img src="{{ url_for('static', filename='assets/about_icon.png') }}" alt="About Icon" class="section-icon" />
+      <h2>О компании ASIATEKS</h2>
+    </div>
+    <p>
+      Компания Asiateks рада приветствовать вас и предложить нашу продукцию <br>и услуги.
+      Наша компания стремится <br>к высокому качеству работы <br>и удовлетворению потребностей
+      каждого клиента. Мы надеемся, что наш сайт поможет вам найти то, что вы ищете,<br>
+      и сделать правильный выбор. Спасибо за ваш интерес к нашей компании!
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-row">
+      <div class="feature-item">
+        <img src="{{ url_for('static', filename='assets/clock.png') }}" alt="15 лет на рынке" />
+        <p>15 лет<br>на рынке</p>
+      </div>
+      <div class="feature-item">
+        <img src="{{ url_for('static', filename='assets/tickbox.png') }}" alt="Большой ассортимент" />
+        <p>Большой<br>ассортимент</p>
+      </div>
+      <div class="feature-item">
+        <img src="{{ url_for('static', filename='assets/russian_ruble.png') }}" alt="Надежные партнеры" />
+        <p>Надежные<br>партнеры<br>с выгодными<br>ценами</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section (SWIPER) -->
+  <section id="products" class="products">
+    <div class="section-header">
+      <img src="{{ url_for('static', filename='assets/product_icon.png') }}" alt="Product Icon" class="section-icon" />
+      <h2>Наша продукция</h2>
+    </div>
+    <div class="price-list-link">
+      <a href="{{ url_for('static', filename='files/price_list.xls') }}" download>ПРАЙС ЛИСТ</a>
+    </div>
+    <!-- Swiper Container for Products -->
+    <div class="mobile-swiper-container">
+      <div class="mobile-swiper-wrapper">
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product1.png') }}" alt="Product 1">
+          <div class="slide-text">
+            Гладкокрашенная<br><br><br>
+            Лен 30%<br>Хлопок 70% <br>
+            шир.220см. 150гр. 
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product2.png') }}" alt="Product 2">
+          <div class="slide-text">
+            Лен полоса(1x1) <br><br><br>
+            Лен 20%<br>Хлопок 80% <br>
+            шир.150см. 150гр. 
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product3.png') }}" alt="Product 3">
+          <div class="slide-text">
+            Двунитка<br><br><br>
+            Лен 40%<br>Хлопок 60% <br>
+            шир.150см.165гр.
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product4.png') }}" alt="Product 4">
+          <div class="slide-text">
+            Полувар<br><br><br>
+            Лен 30%Хлопок 70%<br>
+            шир.150см. 150гр
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product1.png') }}" alt="Product 1">
+          <div class="slide-text">
+            Гладкокрашенная<br><br><br>
+            Лен 30%<br>Хлопок 70% <br>
+            шир.220см. 150гр. 
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product2.png') }}" alt="Product 2">
+          <div class="slide-text">
+            Лен полоса(1x1) <br><br><br>
+            Лен 20%<br>Хлопок 80% <br>
+            шир.150см. 150гр. 
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product3.png') }}" alt="Product 3">
+          <div class="slide-text">
+            Двунитка<br><br><br>
+            Лен 40%<br>Хлопок 60% <br>
+            шир.150см.165гр.
+          </div>
+        </div>
+        <div class="mobile-swiper-slide">
+          <img src="{{ url_for('static', filename='assets/products/product4.png') }}" alt="Product 4">
+          <div class="slide-text">
+            Полувар<br><br><br>
+            Лен 30%Хлопок 70%<br>
+            шир.150см. 150гр
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Navigation Buttons for Products Slider -->
+      <div class="mobile-swiper-button-prev">
+        <img src="{{ url_for('static', filename='assets/swiper_left.png') }}" alt="Prev">
+      </div>
+      <div class="mobile-swiper-button-next">
+        <img src="{{ url_for('static', filename='assets/swiper_right.png') }}" alt="Next">
+      </div>
+  </section>
+
+  <!-- Linen Advantages Section -->
+  <section class="linen-advantages">
+    <div class="advantages-row">
+      <div class="advantage-item">
+        <img src="{{ url_for('static', filename='assets/hypoallergenic_icon.png') }}" alt="Гипоаллергенность" />
+        <p>Гипоаллергенность</p>
+      </div>
+      <div class="advantage-item">
+        <img src="{{ url_for('static', filename='assets/eco_icon.png') }}" alt="Экологичность" />
+        <p>Экологичность</p>
+      </div>
+      <div class="advantage-item">
+        <img src="{{ url_for('static', filename='assets/durability_icon.png') }}" alt="Долговечность" />
+        <p>Долговечность</p>
+      </div>
+    </div>
+    <br><br>
+    <div class="advantages-row2">
+      <div class="advantage-item">
+        <img src="{{ url_for('static', filename='assets/fabric_icon.png') }}" alt="Гипоаллергенность" />
+        <p>Натуральный цвет<br>и текстура</p>
+      </div>
+      <div class="advantage-item">
+        <img src="{{ url_for('static', filename='assets/star_icon.png') }}" alt="Экологичность" />
+        <p>Эстетика и стиль</p>
+      </div>
+    </div>
+    <br>
+    <div class="advantages-text-mobile">
+      <details>
+        <summary>
+          Льняная ткань — это идеальный выбор для тех, кто ценит качество, комфорт и заботу о природе. Вот её ключевые преимущества:
+        </summary>
+        <p>
+          • Натуральность и экологичность: лён производится из природного волокна, полностью биоразлагаем и безопасен для окружающей среды.<br>
+          • Прочность и долговечность: ткани устойчивы к износу, служат многие годы после многочисленных стирок.<br>
+          • Терморегуляция: лён отлично пропускает воздух, впитывает влагу и обеспечивает естественный тепло- и влагообмен.<br>
+          • Гипоаллергенность: подходит даже для людей с чувствительной кожей, не вызывает раздражения.<br>
+          • Эстетика и стиль: натуральный блеск и благородная текстура льна добавляют эксклюзивность изделию.
+          <br><br>
+          Льняная ткань — это не только практично, но и красиво! Выбирайте лён для уюта, здоровья и заботы о природе.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- New Example Section (Separate Slider) -->
+  <section id="examples" class="mobile-products">
+    <div class="section-header">
+      <img src="{{ url_for('static', filename='assets/about_icon.png') }}" alt="Examples Icon" class="section-icon" />
+      <h2>Варианты изделий <br>из нашей ткани</h2>
+    </div>
+    <br><br>
+    <div class="advantages-row3">
+      <div class="advantage-item2">
+        <img src="{{ url_for('static', filename='assets/curtains.png') }}" alt="Гипоаллергенность" />
+        <p>Шторы</p>
+      </div>
+      <div class="advantage-item2">
+        <img src="{{ url_for('static', filename='assets/bedding.png') }}" alt="Экологичность" />
+        <p>Постельное<br>белье</p>
+      </div>
+      <div class="advantage-item2">
+        <img src="{{ url_for('static', filename='assets/pillow.png') }}" alt="Долговечность" />
+        <p>Подушки</p>
+      </div>
+    </div>
+    <br><br>
+    <!-- Swiper Container for Examples -->
+    <div class="mobile-swiper-container2">
+      <div class="mobile-swiper-wrapper2">
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example1.png') }}" alt="Example 1">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example2.png') }}" alt="Example 2">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example3.png') }}" alt="Example 3">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example4.png') }}" alt="Example 4">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example5.png') }}" alt="Example 5">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example6.png') }}" alt="Example 6">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example7.png') }}" alt="Example 7">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example8.png') }}" alt="Example 8">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example9.png') }}" alt="Example 9">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example10.png') }}" alt="Example 10">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example11.png') }}" alt="Example 11">
+        </div>
+        <div class="mobile-swiper-slide2">
+          <img src="{{ url_for('static', filename='assets/examples-mobile/example12.png') }}" alt="Example 12">
+        </div>
+      </div>
+    </div>
+    <!-- Navigation Buttons for Examples Slider -->
+    <div class="mobile-swiper-button-prev2">
+      <img src="{{ url_for('static', filename='assets/swiper_left.png') }}" alt="Prev">
+    </div>
+    <div class="mobile-swiper-button-next2">
+      <img src="{{ url_for('static', filename='assets/swiper_right.png') }}" alt="Next">
+    </div>
+  </section>
+<br><br>
+  <!-- Map Section -->
+  <section id="map" class="map-section">
+    <br>
+    <div class="section-header">
+      <img src="{{ url_for('static', filename='assets/product_icon.png') }}" alt="Map Icon" class="section-icon" />
+      <h2>ASIATEKS на карте</h2>
+    </div>
+    <br>
+    <div class="map-container">
+      <iframe src="https://yandex.eu/map-widget/v1/-/CHqSe8kR" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="address">
+      <br><br><br>
+    <p class="address">
+      Офис нашей компании находится <br> по адресу: г. Иваново, ул. Спартака, д. 22, 1 этаж, пом. 108
+      Время работы: <br>с понедельника по пятницу, с 9:00 <br>до 18:00
+    </p>
+    </div>
+    <br><br><br>
+  </section>
+{% endblock %} 
