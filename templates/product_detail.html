@@ -1,86 +1,127 @@
 {% extends "base.html" %}
-
-{% block head_extra %}
-  <!-- Optional Swiper or gallery CSS could be added here -->
-{% endblock %}
-
 {% block title %}ASIATEKS - {{ product.title }}{% endblock %}
 
 {% block body %}
 <section class="product-detail">
+  <br><br><br>
   <div class="product-detail-container">
-    <a href="{{ url_for('products') }}" class="back-button">&larr; Назад к каталогу</a>
+    <a href="{{ url_for('products') }}" class="btn-back">&larr; Назад к каталогу</a>
 
     <div class="product-detail-content">
-      <!-- Image Column -->
+      <!-- IMAGE COLUMN -->
       <div class="product-image-column">
-        <!-- Main Image Display -->
-        <img id="main-image" src="{{ url_for('static', filename=product.images[0]) }}"
-             alt="{{ product.title }}" class="main-product-image">
+        <!-- Main carousel (acts as PhotoSwipe gallery) -->
+        <div class="gallery-wrapper pswp-gallery" id="pd-gallery">
+          <div class="swiper main-swiper">
+            <div class="swiper-wrapper">
+              {% for image in product.images %}
+              <div class="swiper-slide">
+                <a class="pswp-trigger"
+                   href="{{ url_for('static', filename=image) }}"
+                   data-pswp-width="{{ product.image_sizes[loop.index0][0] if product.image_sizes else 1600 }}"
+                   data-pswp-height="{{ product.image_sizes[loop.index0][1] if product.image_sizes else 1200 }}">
+                  <img class="main-product-image"
+                       src="{{ url_for('static', filename=image) }}"
+                       alt="{{ product.title }} — фото {{ loop.index }}"
+                       loading="lazy">
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <button class="zoom-trigger" type="button" aria-label="Увеличить">Увеличить</button>
+        </div>
 
         <!-- Thumbnails -->
-        <div class="product-thumbnails">
-          {% for image in product.images %}
-            <img src="{{ url_for('static', filename=image) }}"
-                 alt="Превью {{ loop.index }}" class="thumbnail"
-                 onclick="document.getElementById('main-image').src=this.src">
-          {% endfor %}
+        <div class="thumbs-row">
+          <div class="swiper thumbs-swiper">
+            <div class="swiper-wrapper">
+              {% for image in product.images %}
+              <div class="swiper-slide">
+                <img class="thumb-img"
+                     src="{{ url_for('static', filename=image) }}"
+                     alt="Превью {{ loop.index }}" loading="lazy">
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Info Column -->
+      <!-- INFO COLUMN -->
       <div class="product-info-column">
-        <h1 class="product-title">
-          {{ product.title }}
-          <span class="product-price">
-            {% if product.price %}
-              {{ product.price[1] }} сум
-            {% endif %}
-          </span>
-        </h1>
+        <h1 class="product-title">{{ product.title }}</h1>
 
-        <div class="product-description">
-          <strong>Состав:</strong> {{ product.detailed_description[0] }}% хлопок, {{ product.detailed_description[1] }}% лён
+        <div class="meta-row">
+          {% if product.tags %}<span class="chip">Теги: {{ product.tags|join(', ') }}</span>{% endif %}
+          <span class="chip success">{{ product.stock_status or 'В наличии' }}</span>
         </div>
 
-        <div class="product-specs">
-          <p><strong>Ширина:</strong> {{ product.specifications[0] }} см</p>
-          <p><strong>Плотность:</strong> {{ product.specifications[1] }} г/м²</p>
-          <p><strong>Описание:</strong> {{ product.product_description }}</p>
+        {% if product.price %}
+          {% set p_small = (product.price|min) %}
+          {% set p_big   = (product.price|max) %}
+          <div class="price-group" role="list" aria-label="Цены по размерам">
+            <div class="price-chip" role="listitem">
+              <span class="price-size">От 500м</span>
+              <span class="price-value"><span class="rub">₽</span>{{ p_small }}</span>
+            </div>
+            <div class="price-chip" role="listitem">
+              <span class="price-size">От 50м</span>
+              <span class="price-value"><span class="rub">₽</span>{{ p_big }}</span>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="product-description">
+          <p><strong>Состав:</strong> {{ product.detailed_description[0] }}% хлопок, {{ product.detailed_description[1] }}% лён</p>
+          {% if product.product_description %}<p>{{ product.product_description }}</p>{% endif %}
+        </div>
+
+        <div class="spec-card">
+          <h2 class="h6">Характеристики</h2>
+          <dl class="spec-grid">
+            <div><dt>Ширина</dt><dd>{{ product.specifications[0] }} см</dd></div>
+            <div><dt>Плотность</dt><dd>{{ product.specifications[1] }} г/м²</dd></div>
+          </dl>
         </div>
       </div>
     </div>
 
-    <!-- Similar Products -->
     {% if products %}
       {% set similar = [] %}
       {% for p in products if p.id != product.id and (product.tags | intersect(p.tags) or product.title.split()[0] in p.title) %}
-        {% if similar|length < 4 %}{% set _ = similar.append(p) %}{% endif %}
+        {% if similar|length < 8 %}{% set _ = similar.append(p) %}{% endif %}
       {% endfor %}
       {% if similar %}
-        <div class="related-products">
-          <h2>Похожие товары</h2>
+        <section class="related-products">
+          <h2 class="h5">Похожие товары</h2>
           <div class="product-grid">
             {% for item in similar %}
-              <div class="catalog-card">
-                <img src="{{ url_for('static', filename=item.images[0]) }}" 
-                     alt="{{ item.title }}" class="catalog-image">
-                <h3 class="catalog-title">{{ item.title }}</h3>
-                <a href="{{ url_for('product_detail', product_id=item.id) }}" 
-                   class="catalog-link">Подробнее</a>
-              </div>
+              <article class="catalog-card">
+                <a href="{{ url_for('product_detail', product_id=item.id) }}" class="catalog-media">
+                  <img src="{{ url_for('static', filename=item.images[0]) }}"
+                       alt="{{ item.title }}" class="catalog-image" loading="lazy">
+                </a>
+                <div class="catalog-body">
+                  <h3 class="catalog-title">{{ item.title }}</h3>
+                  {% if item.price %}
+                    {% set from_price = (item.price|min) %}
+                    <div class="catalog-price">от {{ from_price }} ₽</div>
+                  {% endif %}
+                  <a class="catalog-link" href="{{ url_for('product_detail', product_id=item.id) }}">Подробнее</a>
+                </div>
+              </article>
             {% endfor %}
           </div>
-        </div>
+        </section>
       {% endif %}
     {% endif %}
-
   </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
-<script>
-  // Optional: Add hover or selection effect here later
-</script>
+  <script src="{{ url_for('static', filename='js/product-detail.js') }}"></script>
 {% endblock %}

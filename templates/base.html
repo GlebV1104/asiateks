@@ -20,6 +20,7 @@
 
     <!-- Swiper CSS (only once) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
     
     <!-- If you need Splide on other pages, include it once; otherwise, remove it -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/css/splide.min.css"> -->
@@ -88,6 +89,8 @@
 
     <!-- JS Libraries: Include Swiper JS once -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"></script>
+    <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.umd.min.js"></script>
     
     <!-- If needed, include Splide JS once (only if using Splide on some pages) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/js/splide.min.js"></script> -->
@@ -95,5 +98,9 @@
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+
+{% block scripts %}{% endblock %}
+
   </body>
 </html>

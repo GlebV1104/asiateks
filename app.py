@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory , request
+from flask import Flask, render_template, send_from_directory , request , redirect, url_for, flash
 
 application = Flask(__name__)
 
@@ -288,7 +288,18 @@ products_data = [
 
 
 
+@application.route("/contact" , methods=["POST"])
+def contact():
+    name = request.form.get("name", "").strip()
+    contact = request.form.get("contact", "").strip()
+    message = request.form.get("message", "").strip()
 
+    # TODO: send email / save to DB / send to Telegram, etc.
+    # Example: send_mail(subject=f"ASIATEKS: сообщение от {name}", body=..., to=...)
+
+    flash("Спасибо! Мы получили ваше сообщение и свяжемся с вами в ближайшее время.")
+    # Return back to the same page, scrolled to the contact section
+    return redirect(url_for("home") + "#contact")
 
 @application.route('/products')
 def products():
@@ -329,4 +340,4 @@ def intersect(a, b):
     return list(set(a) & set(b))
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=5001 , debug=True)
+    application.run(host='0.0.0.0', port=5002 , debug=True)

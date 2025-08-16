@@ -301,6 +301,55 @@
     </div>
   </section>
 <br><br>
+<!-- Contact Section (inserted before Map) -->
+<section id="contact" class="contact-section">
+  <div class="section-header">
+    <img src="{{ url_for('static', filename='assets/email_icon.png') }}" alt="Contact Icon" class="section-icon" />
+    <h2>Свяжитесь с нами</h2>
+  </div>
+
+  <div class="contact-card">
+    <form action="{{ url_for('contact') }}" method="post" class="contact-form" novalidate>
+      {# If you use Flask-WTF, uncomment the next line and pass a form with CSRF #}
+      {# {{ form.csrf_token }} #}
+
+      <div class="contact-grid">
+        <div class="field">
+          <label for="c_name">Ваше имя</label>
+          <input id="c_name" name="name" type="text" placeholder="Иван Иванов" required />
+        </div>
+
+        <div class="field">
+          <label for="c_contact">Телефон или E-mail</label>
+          <input id="c_contact" name="contact" type="text" placeholder="+7 900 000-00-00 / name@mail.ru" required />
+        </div>
+
+        <div class="field field--full">
+          <label for="c_msg">Сообщение</label>
+          <textarea id="c_msg" name="message" rows="4" placeholder="Кратко опишите ваш запрос..." required></textarea>
+        </div>
+      </div>
+
+      <div class="contact-actions">
+        <button type="submit" class="btn-primary">Отправить</button>
+
+        <a href="{{ url_for('products') }}" class="btn-secondary" aria-label="Перейти в каталог">
+          Перейти в каталог
+        </a>
+      </div>
+    </form>
+  </div>
+
+  {# Flash messages (optional) #}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="contact-flashes">
+        {% for m in messages %}<li>{{ m }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</section>
+
   <!-- Map Section -->
   <section id="map" class="map-section">
     <br>

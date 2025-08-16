@@ -2,43 +2,67 @@
 {% block title %}ASIATEKS - Каталог{% endblock %}
 
 {% block body %}
-<section class="product-catalog">
+<section class="product-catalog" aria-labelledby="catalog-heading">
   <div class="product-catalog-container">
-    <br><br><br>
-    <h1 class="catalog-heading">Наша продукция</h1>
+    <h1 id="catalog-heading" class="catalog-heading">Наша продукция</h1>
 
-    <!-- Filter Form -->
-    <form method="get" action="{{ url_for('products') }}" class="catalog-filter">
-      <input type="text" name="search" placeholder="Поиск..." value="{{ query }}">
-      <select name="tag">
+    <!-- Filter -->
+    <form method="get" action="{{ url_for('products') }}" class="catalog-filter" role="search" aria-label="Фильтр каталога">
+      <label class="sr-only" for="catalog-search">Поиск</label>
+      <input id="catalog-search" type="text" name="search" placeholder="Поиск..." value="{{ query or '' }}" autocomplete="off" />
+
+      <label class="sr-only" for="catalog-tag">Тег</label>
+      <select id="catalog-tag" name="tag">
         <option value="">Все теги</option>
-        <option value="современный" {% if tag_filter == "современный" %}selected{% endif %}>Современный</option>
-        <option value="хлопок" {% if tag_filter == "хлопок" %}selected{% endif %}>Хлопок</option>
-        <option value="лен" {% if tag_filter == "лен" %}selected{% endif %}>Лен</option>
+        <option value="современный" {% if tag_filter == 'современный' %}selected{% endif %}>Современный</option>
+        <option value="хлопок" {% if tag_filter == 'хлопок' %}selected{% endif %}>Хлопок</option>
+        <option value="лен" {% if tag_filter == 'лен' %}selected{% endif %}>Лен</option>
       </select>
-      <button type="submit">
-        <img src="{{ url_for('static', filename='assets/search.png') }}" alt="Поиск" />
+
+      <button type="submit" class="catalog-search-btn" aria-label="Применить фильтр">
+        <img src="{{ url_for('static', filename='assets/search.png') }}" alt="" aria-hidden="true" />
       </button>
     </form>
 
-    <!-- Product Grid -->
-    <div class="catalog-grid">
-      {% for product in products %}
-      <div class="catalog-card">
-        <img src="{{ url_for('static', filename=product.images[0]) }}" alt="{{ product.title }}" class="catalog-image" />
-        <h2 class="catalog-title">{{ product.title }}</h2>
-        <p class="catalog-description">{{ product.description }}</p>
-        <p class="catalog-price">
-          {% if product.price %}
-            {{ product.price[1] }} сум / {{ product.specifications[0] }}x{{ product.specifications[1] }}
-          {% else %}
-            Цена по запросу
-          {% endif %}
-        </p>
-        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="catalog-link">Подробнее</a>
+    <!-- Grid -->
+    {% if products and products|length %}
+      <div class="catalog-grid" role="list">
+        {% for product in products %}
+          <article class="catalog-card" role="listitem">
+            <a class="catalog-media" href="{{ url_for('product_detail', product_id=product.id) }}">
+              <img
+                src="{{ url_for('static', filename=(product.images[0] if product.images else 'assets/placeholder.jpg')) }}"
+                alt="{{ product.title or product.name }}"
+                class="catalog-image"
+                loading="lazy" />
+            </a>
+
+            <!-- Title (name shown; falls back to `name` if `title` is missing) -->
+            <h2 class="catalog-title">
+              <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                {{ product.title or product.name }}
+              </a>
+            </h2>
+
+            <!-- Price -->
+            <p class="catalog-price">
+              {% if product.price %}
+                От {{ product.price|min }}&nbsp;₽
+              {% else %}
+                Цена по запросу
+              {% endif %}
+            </p>
+
+            <a href="{{ url_for('product_detail', product_id=product.id) }}" class="catalog-link">Подробнее</a>
+          </article>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
+    {% else %}
+      <div class="catalog-empty">
+        <p>Ничего не найдено по заданным критериям.</p>
+        <a class="catalog-reset" href="{{ url_for('products') }}">Сбросить фильтры</a>
+      </div>
+    {% endif %}
   </div>
 </section>
 {% endblock %}
