@@ -14,9 +14,15 @@
       <label class="sr-only" for="catalog-tag">Тег</label>
       <select id="catalog-tag" name="tag">
         <option value="">Все теги</option>
-        <option value="современный" {% if tag_filter == 'современный' %}selected{% endif %}>Современный</option>
-        <option value="хлопок" {% if tag_filter == 'хлопок' %}selected{% endif %}>Хлопок</option>
-        <option value="лен" {% if tag_filter == 'лен' %}selected{% endif %}>Лен</option>
+        <option value="страйп" {% if tag_filter == 'страйп' %}selected{% endif %}>Страйп</option>
+        <option value="перкаль" {% if tag_filter == 'перкаль' %}selected{% endif %}>Перкаль</option>
+        <option value="пестроткань" {% if tag_filter == 'пестроткань' %}selected{% endif %}>Пестроткань</option>
+        <option value="классический" {% if tag_filter == 'классический' %}selected{% endif %}>Классический</option>
+        <option value="гладкокрашенный" {% if tag_filter == 'гладкокрашенный' %}selected{% endif %}>Гладкокрашенный</option>
+        <option value="рогожка" {% if tag_filter == 'рогожка' %}selected{% endif %}>Рогожка</option>
+        <option value="полувар" {% if tag_filter == 'полувар' %}selected{% endif %}>Полувар</option>
+        <option value="классика" {% if tag_filter == 'классика' %}selected{% endif %}>Классика</option>
+        <option value="набивная" {% if tag_filter == 'набивная' %}selected{% endif %}>Набивная</option>
       </select>
 
       <button type="submit" class="catalog-search-btn" aria-label="Применить фильтр">

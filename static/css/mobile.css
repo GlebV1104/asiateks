@@ -114,6 +114,12 @@
     border-radius: 3.8vw; text-decoration: none;
     box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.2);
   }
+
+  /* shrink only the button text */
+.hero-cta span {
+  font-size: 2.8vw;   /* 15% smaller */
+}
+
   .hero-cta-icon { width: 4.1vw; height: 4.1vw; display: block; }
 
 
@@ -390,16 +396,27 @@
   }
 
   .product-catalog .catalog-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 4vw; justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4vw;
+    align-items: stretch;
   }
 
+  /* Turn each card into a column flexbox */
   .product-catalog .catalog-card {
-    width: 44vw; text-align: center;
-    background: #FFFFFF; border-radius: 2.5vw; padding: 2vw; overflow: hidden;
+    width: 44vw;
+    background: #FFFFFF;
+    border-radius: 2.5vw;
+    padding: 2vw;
+    overflow: hidden;
     box-shadow: 0 .5vw 1vw rgba(0,0,0,.08);
     transition: transform .3s ease;
+
+    display: flex;          /* NEW */
+    flex-direction: column; /* NEW */
   }
+
+
 
   .product-catalog .catalog-image {
     width: 100%; height: 44vw; object-fit: cover;
@@ -533,7 +550,6 @@
      ========================= */
   .catalog-filter{
     display:grid;
-    /* ⬇️ single-column, no separate button */
     grid-template-columns: 1fr;
     grid-template-areas:
       "search"
@@ -552,18 +568,14 @@
     box-shadow:0 1.6vw 4.2vw rgba(110,130,111,.12);
   }
 
-  /* Search input — icon moved to the RIGHT */
+  /* Search input */
   .catalog-filter input{
     grid-area:search; width:100%;
-    /* ⬇️ extra space on the right for the icon */
     padding:3.6vw 12vw 3.6vw 4vw;
     font-size:4vw; border-radius:3.8vw;
     border:1px solid #E6DED1; background:#FAF8F4; color:#2C5B38;
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E826F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>");
     background-repeat:no-repeat;
     background-size:5.6vw 5.6vw;
-    /* ⬇️ icon position on the right */
     background-position:right 4.2vw center;
     outline:none;
     transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
@@ -575,44 +587,33 @@
     background:#FFF;
   }
 
-  /* Tag select (left icon + right caret) */
+  /* Tag select */
   .catalog-filter select{
     grid-area:tag;
     padding:3.6vw 12vw 3.6vw 12vw;
     font-size:4vw; border-radius:3.8vw;
     border:1px solid #E6DED1; background:#FAF8F4; color:#2C5B38;
     appearance:none;
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E826F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 10L12 2H5v7l8 8 7-7z'/></svg>"),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E826F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");
-    background-repeat:no-repeat,no-repeat;
-    background-size:5.6vw 5.6vw, 3.8vw 3.8vw;
-    background-position:4.2vw center, right 4.2vw center;
     transition:border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
-    /* optional breathing room under the input */
     margin-top: 2vw;
   }
-  .catalog-filter select:focus{
-    border-color: rgba(110,130,111,.55);
-    box-shadow: 0 0 0 .6vw rgba(110,130,111,.12) inset;
-    background:#FFF;
-  }
 
-  /* ⬇️ kill the extra floating search button on mobile */
-  .catalog-filter button{
-    display: none !important;
-  }
+  /* Kill the extra floating search button */
+  .catalog-filter button{ display: none !important; }
 
   /* =========================
-     CARDS — richer, taller
+     CARDS — uniform 3:4 aspect
      ========================= */
   .catalog-grid{
-    display:grid; grid-template-columns:repeat(2,1fr);
-    gap:4.4vw; justify-items:center; text-align:left;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:4.4vw;
+    justify-items:center;
+    text-align:left;
   }
 
   .catalog-card{
-    width:100%; padding:3.2vw; border-radius:4vw; background:#fff;
+    padding:3.2vw; border-radius:4vw; background:#fff;
     border:1px solid #F0EAE0;
     box-shadow:0 .6vw 1.6vw rgba(0,0,0,.06);
     display:flex; flex-direction:column;
@@ -623,22 +624,27 @@
   }
 
   .catalog-card .catalog-media{
-    position:relative; overflow:hidden; border-radius:3.4vw; display:block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3.4vw;
+    display: block;
+    aspect-ratio: 3/4;   /* enforce 3:4 aspect */
   }
 
   .catalog-card .catalog-image{
-    width:100%; height:72vw;
-    display:block; object-fit:cover; object-position:50% 50%;
+    width: 100%;
+    height: 100%;        /* fills aspect-ratio box */
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
     transform: translateZ(0);
-    margin:0 0 2.6vw;
+    margin: 0 0 2.6vw;
   }
 
   .catalog-title{
-    margin:0 0 1.8vw; font-size:4.2vw; line-height:1.28; font-weight:800; color:#244D31;
-    letter-spacing:.15px;
+    margin:0 0 1.8vw; font-size:4.2vw; line-height:1.28;
+    font-weight:800; color:#244D31; letter-spacing:.15px;
   }
-  .catalog-title a, .catalog-title a:visited{ color:#244D31; text-decoration:none; }
-  .catalog-title a:hover{ color:#6E826F; text-decoration:underline; }
 
   .catalog-price{
     display:inline-block;
@@ -662,39 +668,39 @@
 
 
 /* =======================================================
-   MOBILE (≤768px) — scope tall images to catalog page only
-   and unify related-products card design
+   MOBILE (≤768px) — only keep tall images if needed
    ======================================================= */
 @media (max-width:768px){
-
-  /* Tall photo cards ONLY on the catalog page */
-  .product-catalog .catalog-card .catalog-media{
-    position:relative; overflow:hidden; border-radius:3.4vw;
-  }
+  /* REMOVE the forced height:72vw to let 3:4 aspect work */
   .product-catalog .catalog-card .catalog-image{
-    width:100%;
-    height:72vw;                 /* tall look for catalog */
-    display:block;
-    object-fit:cover;
-    object-position:50% 50%;
-    margin:0 0 2.6vw;
-    transform:translateZ(0);
+    height:auto;
   }
+}
 
-  /* -------- Related products on product detail -------- */
-  .related-products .product-grid{ gap:4.4vw; }
 
-  .related-products .catalog-card{
-    border:1px solid #F0EAE0;
-    border-radius:4vw;
-    background:#fff;
-    padding:3.2vw;
-    box-shadow:0 .6vw 1.6vw rgba(0,0,0,.06);
+@media (max-width: 768px) {
+  .related-products .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 4vw !important;
   }
+}
+
+
+.related-products .catalog-card {
+  border: 1px solid #F0EAE0;
+  border-radius: 4vw;
+  background: #fff;
+  padding: 3.2vw;
+  box-shadow: 0 0.6vw 1.6vw rgba(0, 0, 0, 0.06);
+
+  width: 100%;     /* ensure card fills grid cell */
+  box-sizing: border-box; /* padding stays inside */
+}
 
   /* 4:3 media like desktop, no stretching */
   .related-products .catalog-card .catalog-media{
-    aspect-ratio:8/16;
+    aspect-ratio:3/4;
     border-radius:3.4vw;
     overflow:hidden;
     display:block;
@@ -765,6 +771,10 @@
   .btn-back:active,
   .back-button:active{ transform: translateY(1px); }
 }
+
+/* if the text starts with the Unicode arrow */
+.btn-back span::first-letter { display:none; }
+
 
 /* Hide navbar phone numbers on mobile */
 @media (max-width: 768px){

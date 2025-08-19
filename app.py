@@ -4,7 +4,7 @@ import html
 import requests
 from dotenv import load_dotenv
 import json
-
+import re
 
 application = Flask(__name__)
 load_dotenv()
@@ -25,6 +25,13 @@ def load_products():
 
 products_data = load_products()
 
+def is_russian_phone(number: str) -> bool:
+    """
+    Validate Russian phone numbers.
+    Accepts +7XXXXXXXXXX or 8XXXXXXXXXX with 10 digits after prefix.
+    """
+    pattern = r'^(?:\+7|8)\d{10}$'
+    return re.match(pattern, number) is not None
 
 def _send_to_telegram(name: str, contact: str, message: str) -> bool:
     """
@@ -63,7 +70,7 @@ def _send_to_telegram(name: str, contact: str, message: str) -> bool:
         return False
 
 
-# --- replace your /contact route with this version ---
+
 @application.route("/contact", methods=["POST"])
 def contact():
     name = (request.form.get("name", "") or "").strip()
@@ -74,15 +81,17 @@ def contact():
     if len(message) > 4000:
         message = message[:4000] + "…"
 
-    sent = _send_to_telegram(name, contact_value, message)
+    # ✅ check Russian phone validity
+    if is_russian_phone(contact_value):
+        sent = _send_to_telegram(name, contact_value, message)
+    else:
+        sent = False   # skip sending
 
     if sent:
         flash("Спасибо! Мы получили ваше сообщение и свяжемся с вами в ближайшее время.")
     else:
-        # Keep user-facing message friendly; you can also log the failure
-        flash("Спасибо! Мы получили ваше сообщение. (Заметка: уведомление в Telegram временно не отправилось.)")
+        flash("Спасибо! Мы получили ваше сообщение. (Заметка: телефон не российский, уведомление в Telegram не отправлено.)")
 
-    # Return back to the same page, scrolled to the contact section
     return redirect(url_for("home") + "#contact")
 
 
