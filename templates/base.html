@@ -2,51 +2,55 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}ASIATEKS{% endblock %}</title>
+
     <link rel="icon" type="image/png" href="{{ url_for('serve_static', filename='assets/favicon.jpg') }}" />
 
-    <!-- Load Google Font (Geologica) -->
+    <!-- Performance: preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Font (Geologica) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
-
-    <!-- Mobile CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}" media="only screen and (max-width: 768px)" />
-
-    <!-- Swiper CSS (only once) -->
+    <!-- Vendor CSS FIRST so your styles can override them -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
-    
+    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css" />
     <!-- If you need Splide on other pages, include it once; otherwise, remove it -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/css/splide.min.css"> -->
+
+    <!-- Your CSS (base) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css', v='2025-08-21-1') }}" />
+
+    <!-- Your CSS (mobile overrides) — LOAD LAST and NO media attribute -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css', v='2025-08-21-1') }}" />
   </head>
+
   <body>
- <nav class="navbar">
-  <div class="navbar-container">
-    <!-- Left side: Logo + Links -->
-    <div class="navbar-left">
-      <a href="/" class="navbar-logo">
-        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="ASIATEKS Logo" />
-      </a>
-      <ul class="navbar-links">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/products">Каталог</a></li>
-      </ul>
-    </div>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <!-- Left side: Logo + Links -->
+        <div class="navbar-left">
+          <a href="/" class="navbar-logo">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="ASIATEKS Logo" />
+          </a>
+          <ul class="navbar-links">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/products">Каталог</a></li>
+          </ul>
+        </div>
 
-    <!-- Right side: Phone numbers -->
-    <div class="navbar-right">
-      <a href="tel:+74932373393" class="navbar-phone">+7 (4932) 37-33-93</a>
-      <a href="tel:+79203564269" class="navbar-phone">+7 (920) 356-42-69</a>
-    </div>
-  </div>
-</nav>
-
+        <!-- Right side: Phone numbers -->
+        <div class="navbar-right">
+          <a href="tel:+74932373393" class="navbar-phone">+7 (4932) 37-33-93</a>
+          <a href="tel:+79203564269" class="navbar-phone">+7 (920) 356-42-69</a>
+        </div>
+      </div>
+    </nav>
 
     {% block body %}{% endblock %}
 
@@ -55,6 +59,7 @@
       <div class="footer-left">
         <img src="{{ url_for('static', filename='assets/logo2.png') }}" alt="ASIATEKS" class="footer-logo" />
       </div>
+
       <div class="footer-contacts">
         <p>
           <img src="{{ url_for('static', filename='assets/phone_mini.png') }}" alt="Phone" />
@@ -75,7 +80,9 @@
           <a href="mailto:ASIATEKS@yandex.ru">ASIATEKS@yandex.ru</a>
         </p>
       </div>
+
       <p class="footer-big-text">2025 ASIATEKS. Все права защищены</p>
+
       <nav class="footer-nav">
         <ul>
           <li><a href="/">Главная</a></li>
@@ -87,20 +94,16 @@
       </nav>
     </footer>
 
-    <!-- JS Libraries: Include Swiper JS once -->
+    <!-- Vendor JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"></script>
     <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.umd.min.js"></script>
-    
-    <!-- If needed, include Splide JS once (only if using Splide on some pages) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/js/splide.min.js"></script> -->
-    
-    <!-- Custom JS -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 
+    <!-- Your JS -->
+    <script src="{{ url_for('static', filename='js/script.js', v='2025-08-21-1') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js', v='2025-08-21-1') }}"></script>
 
-{% block scripts %}{% endblock %}
-
+    {% block scripts %}{% endblock %}
   </body>
 </html>
