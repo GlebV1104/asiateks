@@ -12,7 +12,7 @@
       <input id="catalog-search" type="text" name="search" placeholder="Поиск..." value="{{ query or '' }}" autocomplete="off" />
 
       <label class="sr-only" for="catalog-tag">Тег</label>
-      <select id="catalog-tag" name="tag">
+      <select id="catalog-tag" name="tag" onchange="this.form.submit()">
         <option value="">Все теги</option>
         <option value="страйп" {% if tag_filter == 'страйп' %}selected{% endif %}>Страйп</option>
         <option value="перкаль" {% if tag_filter == 'перкаль' %}selected{% endif %}>Перкаль</option>
@@ -24,6 +24,7 @@
         <option value="классика" {% if tag_filter == 'классика' %}selected{% endif %}>Классика</option>
         <option value="набивная" {% if tag_filter == 'набивная' %}selected{% endif %}>Набивная</option>
       </select>
+
 
       <button type="submit" class="catalog-search-btn" aria-label="Применить фильтр">
         <img src="{{ url_for('static', filename='assets/search.png') }}" alt="" aria-hidden="true" />
