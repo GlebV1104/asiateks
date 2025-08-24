@@ -508,14 +508,14 @@ body {
 /* Taller image -> taller card */
 .catalog-image{
   width:100%;
-  height:420px;                           /* taller for desktop */
+  height:420px;
   margin-bottom:14px;
   border-radius:12px;
   object-fit:cover;
   object-position:center;
 }
 
-/* ---------- Title (distinct color, a bit larger) ---------- */
+/* ---------- Title ---------- */
 .catalog-title{
   margin:4px 0 8px;
   font-size:1.2rem;
@@ -539,7 +539,7 @@ body {
 /* Hide short description on cards */
 .catalog-description{ display:none; }
 
-/* “Подробнее” button-styled link */
+/* “Подробнее” */
 .catalog-link{
   display:inline-block;
   padding:.6rem 1rem;
@@ -566,7 +566,6 @@ body {
 }
 
 
-
 /* ======================================================================
   15) PRODUCT DETAIL (PAGE)
    ====================================================================== */
@@ -591,7 +590,7 @@ body {
 }
 
 
-/* ----- 15.1) Gallery (Swiper 9) — no arrows ----- */
+/* ----- 15.1) Gallery ----- */
 .gallery-wrapper {
   background: var(--paper);
   border: 1px solid var(--line); border-radius: var(--radius);
@@ -620,7 +619,7 @@ body {
 .thumb-img:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 
 
-/* ----- 15.2) Price Group (₽ small/big) ----- */
+/* ----- 15.2) Price Group ----- */
 .price-group {
   display: flex; align-items: stretch; flex-wrap: wrap; gap: .75rem;
 }
@@ -698,18 +697,13 @@ body {
 .catalog-link:hover { background: #597059; }
 
 
-
 /* =========================================================
    PRODUCT DETAIL — visual polish + edge-to-edge image
-   Drop these at the end of your CSS
    ========================================================= */
-
-/* Wider stage (optional) */
 .product-detail-container { max-width: 1280px; }
 
-/* Make the media area blend with page */
 .gallery-wrapper{
-  background: transparent;          /* no white box */
+  background: transparent;
   border: none;
   box-shadow: none;
   border-radius: 16px;
@@ -719,21 +713,20 @@ body {
 .main-swiper .swiper-wrapper{ width: 100%; }
 .main-swiper .swiper-slide{
   width: 100% !important;
-  background: transparent;          /* remove grey/fafafa panel */
+  background: transparent;
   display: flex; align-items: center; justify-content: center;
 }
 
 /* Fill the frame (no side gaps) */
 .main-product-image{
   width: 100%;
-  height: clamp(520px, 68vh, 820px); /* responsive, tall enough to cover */
-  max-height: none;                  /* override previous max-height */
-  object-fit: cover;                 /* <— fills width, crops a little if needed */
+  height: clamp(520px, 68vh, 820px);
+  max-height: none;
+  object-fit: cover;
   user-select: none; display: block;
 }
 
-/* If you ever need “contain” on some products:
-   add class .fit-contain to .gallery-wrapper */
+/* Optional contain mode */
 .gallery-wrapper.fit-contain .main-product-image{
   height: auto; max-height: 70vh; object-fit: contain;
 }
@@ -781,59 +774,19 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,.06);
 }
 
-/* Stick the info column for comfortable scanning on wide screens */
+/* Stick the info column */
 @media (min-width: 1100px){
   .product-info-column{ position: sticky; top: 96px; }
-  .product-detail-content{ grid-template-columns: 1.2fr .8fr; } /* give media more width */
+  .product-detail-content{ grid-template-columns: 1.2fr .8fr; }
 }
 
 /* Related product tiles – tiny lift on hover */
 .catalog-card:hover{ transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,.10); }
 
-/* ======================================================================   
-  16) MOBILE TWEAKS (≤ 640px) — Product Detail focus
-   ====================================================================== */
-@media (max-width: 640px) {
-  .product-detail         { padding: 1rem 0 1.25rem; }
-  .product-detail-container { padding: 0 .75rem; }
-  .btn-back               { margin-bottom: .9rem; padding: .5rem .85rem; }
-
-  /* tighten grid spacing */
-  .product-detail-content { gap: 1.25rem; }
-
-  /* gallery sizing */
-  .main-product-image     { max-height: 360px; }
-  .thumb-img              { width: 56px; height: 56px; }
-
-  /* typography */
-  .product-title          { font-size: clamp(1.25rem, 5vw, 1.6rem); }
-  .price                  { font-size: clamp(1.2rem, 5vw, 1.5rem); }
-
-  /* card paddings */
-  .product-description    { padding: .85rem; }
-  .spec-card              { padding: .85rem; }
-
-  /* specs single-column */
-  .spec-grid              { grid-template-columns: 1fr; }
-
-  /* related grid */
-  .product-grid           { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
-
-  @media (max-width: 360px) {
-    .product-grid         { grid-template-columns: 1fr; }
-  }
-
-  /* price chips squeeze */
-  .price-chip             { flex: 1 1 calc(50% - .4rem); padding: .6rem .75rem; }
-  .price-size             { font-size: .9rem; }
-  .price-value            { font-size: 1.15rem; }
-}
 
 /* =========================================================
-   RELATED PRODUCTS — identical to catalog tiles
+   RELATED PRODUCTS — Desktop/tablet
    ========================================================= */
-
-/* Grid same as catalog (desktop/tablet) */
 .related-products .product-grid{
   display: grid;
   gap: 40px;
@@ -841,8 +794,6 @@ body {
   text-align: left;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
-
-/* Card shell = catalog look */
 .related-products .catalog-card{
   width: 100%;
   padding: 20px;
@@ -856,25 +807,21 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0,0,0,.10);
 }
-
-/* Media area — NO forced 4:3 box */
 .related-products .catalog-media{
   display: block;
-  aspect-ratio: auto;         /* important: undo any global 4/3 */
+  aspect-ratio: auto;
   background: transparent;
   border-radius: 12px;
   overflow: hidden;
 }
 .related-products .catalog-image{
   width: 100%;
-  height: 360px;              /* same height as catalog desktop */
+  height: 360px;
   object-fit: cover;
   object-position: center;
   border-radius: 12px;
   margin-bottom: 14px;
 }
-
-/* Title = catalog style */
 .related-products .catalog-title{
   margin: 4px 0 8px;
   font-size: 1.2rem;
@@ -894,8 +841,6 @@ body {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-
-/* Price/link — inherit catalog styling (no green button here) */
 .related-products .catalog-price{
   background: none;
   border: none;
@@ -911,31 +856,6 @@ body {
 }
 .related-products .catalog-card .catalog-link:hover{
   text-decoration: none !important;
-}
-
-/* ===== Mobile parity (<=768px): 1 card per row ===== */
-@media (max-width: 768px){
-  .related-products .product-grid{
-    grid-template-columns: 1fr !important;  /* one card per row */
-    gap: 4.4vw;
-  }
-  .related-products .catalog-card{
-    padding: 3.2vw;
-    border: 1px solid #F0EAE0;
-    border-radius: 4vw;
-    box-shadow: 0 .6vw 1.6vw rgba(0,0,0,.06);
-  }
-  .related-products .catalog-media{ border-radius: 3.4vw; }
-  .related-products .catalog-image{
-    height: 72vw;                           /* same tall image as mobile catalog */
-    border-radius: 3.4vw;
-    margin-bottom: 2.6vw;
-  }
-  .related-products .catalog-title{
-    font-size: 4.2vw;
-    line-height: 1.28;
-    margin: 0 0 1.8vw;
-  }
 }
 
 /* ===== Contact Section ===== */
@@ -1015,19 +935,11 @@ body {
   font-weight: 700;
 }
 
-/* Mobile tweaks */
-@media (max-width: 768px){
-  .contact-section { margin: 9vw auto; padding: 0 5vw; }
-  .contact-card { border-radius: 4vw; padding: 4vw; }
-  .contact-grid { grid-template-columns: 1fr; gap: 3vw; }
-  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
-}
-
-
-.product-catalog .catalog-image { height: 336px; }           /* was 420px */
-@media (max-width: 1200px) { .product-catalog .catalog-image { height: 304px; } } /* was 380px */
-@media (max-width: 1024px) { .product-catalog .catalog-image { height: 272px; } } /* was 340px */
-@media (max-width: 900px)  { .product-catalog .catalog-image { height: 240px; } } /* was 300px */
+/* Desktop/tablet heights for catalog & related images */
+.product-catalog .catalog-image { height: 336px; }
+@media (max-width: 1200px) { .product-catalog .catalog-image { height: 304px; } }
+@media (max-width: 1024px) { .product-catalog .catalog-image { height: 272px; } }
+@media (max-width: 900px)  { .product-catalog .catalog-image { height: 240px; } }
 
 /* Keep "Related products" tiles identical to catalog */
 .related-products .catalog-image { height: 336px; }

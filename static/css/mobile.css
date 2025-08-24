@@ -1,8 +1,24 @@
 /************************************************************
-  ASIATEKS — mobile.css
+  ASIATEKS — mobile.css (mobile-first)
   Applies when screen width <= 768px
   (Sizes use vw units tuned for ~390px devices)
 ************************************************************/
+
+/* Theme tokens so mobile.css can stand on its own */
+:root {
+  --brand:    #345E40;
+  --brand-2:  #6E826F;
+  --accent:   #E53935;
+
+  --ink:      #222;
+  --ink-2:    #333;
+  --paper:    #fff;
+  --chip:     #FFF8EE;
+  --line:     #EAEAEA;
+
+  --radius:   12px;
+  --shadow:   0 8px 24px rgba(0,0,0,.08);
+}
 
 @media (max-width: 768px) {
 
@@ -116,10 +132,7 @@
   }
 
   /* shrink only the button text */
-.hero-cta span {
-  font-size: 2.8vw;   /* 15% smaller */
-}
-
+  .hero-cta span { font-size: 2.8vw; }
   .hero-cta-icon { width: 4.1vw; height: 4.1vw; display: block; }
 
 
@@ -323,7 +336,7 @@
   .site-footer {
     background-color: #8E7D64; color: #D6C0A1; text-align: center;
     display: flex; flex-direction: column; align-items: center;
-    padding: 7.7vw 5.1vw; /* 30px 20px → 7.7vw 5.1vw */
+    padding: 7.7vw 5.1vw;
   }
 
   .footer-left { margin-bottom: 5.1vw; }
@@ -344,7 +357,7 @@
   }
   .footer-nav ul li a { color: #D6C0A1; font-size: 3.7vw; }
 
-  /* Scoped link colors (no global override on mobile) */
+  /* Scoped link colors */
   .hero a       { color: #FFF8EE; }
   .site-footer a{ color: #D6C0A1; }
   .hero-content a { color: #6E826F; }
@@ -412,11 +425,9 @@
     box-shadow: 0 .5vw 1vw rgba(0,0,0,.08);
     transition: transform .3s ease;
 
-    display: flex;          /* NEW */
-    flex-direction: column; /* NEW */
+    display: flex;
+    flex-direction: column;
   }
-
-
 
   .product-catalog .catalog-image {
     width: 100%; height: 44vw; object-fit: cover;
@@ -453,7 +464,7 @@
 
   .product-detail-content { display: flex; flex-direction: column; gap: 4vw; }
 
-  .product-info { display: block; } /* keep natural DOM order */
+  .product-info { display: block; }
 
   .product-image-wrapper { width: 100%; }
 
@@ -514,24 +525,19 @@
   .product-detail-slider-button-next img { width: 8.2vw; height: 8.2vw; }
 
   .product-detail-slider-pagination { bottom: -3vw; }
-}
 
 
-/* =========================================================
-   ORIENTATION TWEAKS — Mobile landscape
-   (separate query; no nested @media)
-   ========================================================= */
-@media (max-width: 768px) and (orientation: landscape) {
-  .hero-mobile-text h1 { font-size: 8.2vw; }
-  .subtitle           { font-size: 4.1vw; margin-bottom: 4.1vw; }
-}
+  /* =========================================================
+     ORIENTATION TWEAKS — Mobile landscape
+     ========================================================= */
+  @media (orientation: landscape) {
+    .hero-mobile-text h1 { font-size: 8.2vw; }
+    .subtitle           { font-size: 4.1vw; margin-bottom: 4.1vw; }
+  }
 
-/* =======================================================
-   MOBILE CATALOG — top-tier pass (≤768px)
-   ======================================================= */
-@media (max-width: 768px){
-
-  /* Page spacing (for fixed navbar) */
+  /* =======================================================
+     MOBILE CATALOG — top-tier pass
+     ======================================================= */
   .product-catalog{
     padding-top: 18vw;
     padding-bottom: 10vw;
@@ -545,9 +551,7 @@
     letter-spacing:.2px;
   }
 
-  /* =========================
-     FILTER capsule (pro look)
-     ========================= */
+  /* FILTER capsule (pro look) */
   .catalog-filter{
     display:grid;
     grid-template-columns: 1fr;
@@ -601,9 +605,7 @@
   /* Kill the extra floating search button */
   .catalog-filter button{ display: none !important; }
 
-  /* =========================
-     CARDS — uniform 3:4 aspect
-     ========================= */
+  /* CARDS — uniform 3:4 aspect */
   .catalog-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -628,12 +630,12 @@
     overflow: hidden;
     border-radius: 3.4vw;
     display: block;
-    aspect-ratio: 3/4;   /* enforce 3:4 aspect */
+    aspect-ratio: 3/4;
   }
 
   .catalog-card .catalog-image{
     width: 100%;
-    height: 100%;        /* fills aspect-ratio box */
+    height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
     display: block;
@@ -664,41 +666,28 @@
   }
   .catalog-link:active{ transform: scale(.98); }
   .catalog-link:hover{ filter: brightness(1.04); }
-}
+
+  /* Only keep tall images if needed */
+  .product-catalog .catalog-card .catalog-image{ height:auto; }
 
 
-/* =======================================================
-   MOBILE (≤768px) — only keep tall images if needed
-   ======================================================= */
-@media (max-width:768px){
-  /* REMOVE the forced height:72vw to let 3:4 aspect work */
-  .product-catalog .catalog-card .catalog-image{
-    height:auto;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .related-products .product-grid {
+  /* Related products — one column on mobile */
+  .related-products .product-grid{
     display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;
     gap: 4vw !important;
   }
-}
 
-
-.related-products .catalog-card {
-  border: 1px solid #F0EAE0;
-  border-radius: 4vw;
-  background: #fff;
-  padding: 3.2vw;
-  box-shadow: 0 0.6vw 1.6vw rgba(0, 0, 0, 0.06);
-
-  width: 100%;     /* ensure card fills grid cell */
-  box-sizing: border-box; /* padding stays inside */
-}
-
-  /* 4:3 media like desktop, no stretching */
+  /* Related products card styling (mobile only) */
+  .related-products .catalog-card {
+    border: 1px solid #F0EAE0;
+    border-radius: 4vw;
+    background: #fff;
+    padding: 3.2vw;
+    box-shadow: 0 0.6vw 1.6vw rgba(0, 0, 0, 0.06);
+    width: 100%;
+    box-sizing: border-box;
+  }
   .related-products .catalog-card .catalog-media{
     aspect-ratio:3/4;
     border-radius:3.4vw;
@@ -711,8 +700,6 @@
     object-fit:cover;
     margin:0 0 2.6vw;
   }
-
-  /* Titles / price / CTA same styling as catalog */
   .related-products .catalog-title{
     margin:0 0 1.8vw; font-size:4.2vw; line-height:1.28;
     font-weight:800; color:#244D31; letter-spacing:.15px;
@@ -720,13 +707,11 @@
   .related-products .catalog-title a,
   .related-products .catalog-title a:visited{ color:#244D31; text-decoration:none; }
   .related-products .catalog-title a:hover{ color:#6E826F; text-decoration:underline; }
-
   .related-products .catalog-price{
     display:inline-block; margin:.4vw 0 0; padding:1.6vw 3vw;
     font-size:3.8vw; font-weight:800; color:#2C5B38;
     background:#F1F6F2; border:1px solid #E0EAE3; border-radius:999px;
   }
-
   .related-products .catalog-link{
     display:block; margin-top:3.2vw; text-align:center;
     background:linear-gradient(180deg,#6E826F 0%,#597059 100%);
@@ -735,26 +720,22 @@
     box-shadow:0 .8vw 2.2vw rgba(0,0,0,.12);
   }
 
-
-/* MOBILE: fix Back button contrast/visibility */
-@media (max-width: 768px){
+  /* MOBILE: fix Back button contrast/visibility */
   .btn-back,
   .back-button{
-    background: var(--brand-2);          /* green pill */
-    color: #fff !important;              /* force white text */
+    background: var(--brand-2);
+    color: #fff !important;
     display: inline-flex;
     align-items: center;
     gap: 2.4vw;
     padding: 2.8vw 4.2vw;
     border-radius: 3.6vw;
-    text-decoration: none !important;    /* no underline */
+    text-decoration: none !important;
     font-weight: 700;
     box-shadow: 0 .8vw 2vw rgba(0,0,0,.12);
   }
   .btn-back:visited,
   .back-button:visited{ color:#fff !important; }
-
-  /* optional white arrow */
   .btn-back::before,
   .back-button::before{
     content:"";
@@ -764,55 +745,184 @@
     transform: rotate(45deg);
     margin-right: .8vw;
   }
-
   .btn-back:hover,
   .back-button:hover{ filter: brightness(1.05); }
   .btn-back:active,
   .back-button:active{ transform: translateY(1px); }
-}
 
-/* if the text starts with the Unicode arrow */
-.btn-back span::first-letter { display:none; }
-
-
-/* Hide navbar phone numbers on mobile */
-@media (max-width: 768px){
+  /* Hide navbar phone numbers on mobile */
   .navbar-right,
   .navbar .navbar-phone,
-  .navbar a[href^="tel:"] { 
-    display: none !important; 
+  .navbar a[href^="tel:"] {
+    display: none !important;
   }
-}
-/* Equal spacing between LOGO and each nav link (desktop + mobile) */
-.navbar-left{
-  display: grid;
-  grid-auto-flow: column;          /* put items in a single row */
-  align-items: center;
-  justify-content: space-between;  /* equal gaps between all items */
-  width: 100%;
-  gap: 0;
-}
 
-/* Flatten the UL so its LIs sit beside the logo as grid items */
-.navbar-links{
-  display: contents;               /* lets <li> become grid children */
-  margin-left: 0;
-  padding: 0;
-}
-.navbar-links li{ list-style: none; }
-.navbar-links li a{
-  display: inline-block;
-  text-align: center;
-  padding: 0 .5rem;                /* tiny breathing room around text */
-}
-
-/* Fallback for older browsers that don't support display: contents */
-@supports not (display: contents){
+  /* Equal spacing between LOGO and each nav link (mobile override) */
   .navbar-left{
-    display: flex;
-    justify-content: space-around; /* approximate equal spacing */
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 0;
   }
-  .navbar-links{ margin-left: 0; gap: 0; }
+  .navbar-links{
+    display: contents;
+    margin-left: 0;
+    padding: 0;
+  }
+  .navbar-links li{ list-style: none; }
+  .navbar-links li a{
+    display: inline-block;
+    text-align: center;
+    padding: 0 .5rem;
+  }
+  @supports not (display: contents){
+    .navbar-left{
+      display: flex;
+      justify-content: space-around;
+      gap: 0;
+    }
+    .navbar-links{ margin-left: 0; gap: 0; }
+  }
+}
+/* (Removed the risky `.btn-back span::first-letter` rule that hid the first character globally) */
+/* ======================================================================
+  16) MOBILE TWEAKS (≤ 640px) — Product Detail focus
+   ====================================================================== */
+@media (max-width: 640px) {
+  .product-detail         { padding: 1rem 0 1.25rem; }
+  .product-detail-container { padding: 0 .75rem; }
+  .btn-back               { margin-bottom: .9rem; padding: .5rem .85rem; }
+
+  .product-detail-content { gap: 1.25rem; }
+
+  .main-product-image     { max-height: 360px; }
+  .thumb-img              { width: 56px; height: 56px; }
+
+  .product-title          { font-size: clamp(1.25rem, 5vw, 1.6rem); }
+  .price                  { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+
+  .product-description    { padding: .85rem; }
+  .spec-card              { padding: .85rem; }
+
+  .spec-grid              { grid-template-columns: 1fr; }
+
+  .product-grid           { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+
+  @media (max-width: 360px) {
+    .product-grid         { grid-template-columns: 1fr; }
+  }
+
+  .price-chip             { flex: 1 1 calc(50% - .4rem); padding: .6rem .75rem; }
+  .price-size             { font-size: .9rem; }
+  .price-value            { font-size: 1.15rem; }
 }
 
+/* =========================================================
+   CONTACT FORM (mobile ≤768px)
+   ========================================================= */
+@media (max-width: 768px){
+  .contact-section {
+    width: 89.7vw;            /* match catalog/container rhythm */
+    margin: 10.3vw auto;      /* space below fixed navbar */
+    padding: 0;
+  }
+
+  .contact-card {
+    background: #fff;
+    border: 1px solid #E6DED1;
+    border-radius: 4vw;
+    box-shadow: 0 .8vw 2vw rgba(0,0,0,.08);
+    padding: 4.2vw;
+  }
+
+  .contact-form { width: 100%; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* single column on mobile */
+    gap: 3vw;
+    margin-bottom: 3vw;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 2vw; }
+  .field--full { grid-column: 1 / -1; }
+
+  .contact-form label {
+    font-weight: 700;
+    color: var(--brand-2);
+    font-size: 3.6vw;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 3.4vw 3.8vw;
+    border-radius: 3.6vw;
+    border: 1px solid #E6DED1;
+    background: #FAF8F4;
+    color: var(--ink);
+    font-family: 'Geologica', sans-serif;
+    font-size: 3.8vw;
+    transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #98A79A;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 0;
+    background: #fff;
+    border-color: rgba(110,130,111,.55);
+    box-shadow: 0 0 0 .6vw rgba(110,130,111,.12) inset;
+  }
+
+  .contact-form textarea {
+    min-height: 32vw;
+    resize: vertical;
+    line-height: 1.35;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8vw;
+    margin-top: 2vw;
+  }
+
+  /* Buttons go full-width on mobile */
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 3.2vw 0;
+    border-radius: 3.6vw;
+    font-weight: 800;
+    font-size: 3.8vw;
+  }
+
+  .btn-primary {
+    background: linear-gradient(180deg, #6E826F 0%, #597059 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 .8vw 2.2vw rgba(0,0,0,.12);
+  }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--brand-2);
+    border: 1px solid #E6DED1;
+  }
+
+  .contact-flashes {
+    list-style: none;
+    padding: 0;
+    margin: 3vw 0 0;
+    color: #2f7a39;
+    font-weight: 700;
+    font-size: 3.4vw;
+  }
+}

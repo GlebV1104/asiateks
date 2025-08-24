@@ -2,14 +2,23 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <title>{% block title %}ASIATEKS{% endblock %}</title>
 
-    <link rel="icon" type="image/png" href="{{ url_for('serve_static', filename='assets/favicon.jpg') }}" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('serve_static', filename='assets/favicon.jpg') }}"
+    />
 
-    <!-- Performance: preconnect for Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Performance: font & CDN preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
 
     <!-- Google Font (Geologica) -->
     <link
@@ -18,16 +27,28 @@
     />
 
     <!-- Vendor CSS FIRST so your styles can override them -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css" />
-    <!-- If you need Splide on other pages, include it once; otherwise, remove it -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/photoswipe@5/dist/photoswipe.css"
+    />
+    <!-- If Splide is unused, keep it removed -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/css/splide.min.css"> -->
 
-    <!-- Your CSS (base) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css', v='2025-08-21-1') }}" />
+    <!-- Your CSS (desktop/tablet) -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css', v='2025-08-24-1') }}"
+    />
 
     <!-- Your CSS (mobile overrides) — LOAD LAST and NO media attribute -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css', v='2025-08-21-1') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/mobile.css', v='2025-08-24-1') }}"
+    />
   </head>
 
   <body>
@@ -36,7 +57,10 @@
         <!-- Left side: Logo + Links -->
         <div class="navbar-left">
           <a href="/" class="navbar-logo">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="ASIATEKS Logo" />
+            <img
+              src="{{ url_for('static', filename='assets/logo.png') }}"
+              alt="ASIATEKS Logo"
+            />
           </a>
           <ul class="navbar-links">
             <li><a href="/">Главная</a></li>
@@ -57,26 +81,42 @@
     <!-- Footer (common to all pages) -->
     <footer class="site-footer">
       <div class="footer-left">
-        <img src="{{ url_for('static', filename='assets/logo2.png') }}" alt="ASIATEKS" class="footer-logo" />
+        <img
+          src="{{ url_for('static', filename='assets/logo2.png') }}"
+          alt="ASIATEKS"
+          class="footer-logo"
+        />
       </div>
 
       <div class="footer-contacts">
         <p>
-          <img src="{{ url_for('static', filename='assets/phone_mini.png') }}" alt="Phone" />
+          <img
+            src="{{ url_for('static', filename='assets/phone_mini.png') }}"
+            alt="Phone"
+          />
           <a href="tel:+74932373393">+7 (4932) 37-33-93</a>
           <span class="footer-separator">|</span>
           <a href="tel:+79203564269">+7 (920) 356-42-69</a>
         </p>
         <p>
-          <img src="{{ url_for('static', filename='assets/telegram_mini.png') }}" alt="Telegram" />
+          <img
+            src="{{ url_for('static', filename='assets/telegram_mini.png') }}"
+            alt="Telegram"
+          />
           <a href="https://t.me/asia_teks">@asia_teks</a>
         </p>
         <p>
-          <img src="{{ url_for('static', filename='assets/whatsup_min.png') }}" alt="WhatsApp" />
+          <img
+            src="{{ url_for('static', filename='assets/whatsup_min.png') }}"
+            alt="WhatsApp"
+          />
           <a href="https://wa.me/79203564269">+7 (920) 356-42-69</a>
         </p>
         <p>
-          <img src="{{ url_for('static', filename='assets/email_mini.png') }}" alt="Email" />
+          <img
+            src="{{ url_for('static', filename='assets/email_mini.png') }}"
+            alt="Email"
+          />
           <a href="mailto:ASIATEKS@yandex.ru">ASIATEKS@yandex.ru</a>
         </p>
       </div>
@@ -94,16 +134,36 @@
       </nav>
     </footer>
 
-    <!-- Vendor JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"></script>
-    <script defer src="https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.umd.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/js/splide.min.js"></script> -->
+    <!-- Vendor JS (defer so DOM is ready) -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/photoswipe@5/dist/photoswipe.umd.min.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.umd.min.js"
+    ></script>
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3/dist/js/splide.min.js"></script> -->
 
-    <!-- Your JS -->
-    <script src="{{ url_for('static', filename='js/script.js', v='2025-08-21-1') }}"></script>
-    <script src="{{ url_for('static', filename='js/custom.js', v='2025-08-21-1') }}"></script>
+    <!-- Your JS (after vendors) -->
+    <script
+      defer
+      src="{{ url_for('static', filename='js/script.js', v='2025-08-24-1') }}"
+    ></script>
+    <script
+      defer
+      src="{{ url_for('static', filename='js/custom.js', v='2025-08-24-1') }}"
+    ></script>
 
+    {# Example: load product detail gallery only on that page
+       {% block scripts %}
+         <script defer src="{{ url_for('static', filename='js/product-detail.js', v='2025-08-24-1') }}"></script>
+       {% endblock %}
+    #}
     {% block scripts %}{% endblock %}
   </body>
 </html>
